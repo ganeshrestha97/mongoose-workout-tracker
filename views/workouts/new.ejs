@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+
+    <h2>Add a New Workout</h2>
+    <form action="/wrokouts" method="post">
+        <p> <label for="workout"> Exercise </label>
+            <select name="workout" id="workout">
+                <option value="Run">Run</option>
+                <option value="Push-Up">Push-Up</option>
+                <option value="Pull-Up">Pull-Up</option>
+                <option value="Plank">Plank</option>
+                <option value="Sit-Up">Sit-up</option>
+                <option value="Squat">Squat</option>
+                <option value="Bike">Bike</option>
+                <option value="Swim">Swim</option>
+                <option value="Snowboard">Snowboard</option>
+                <option value="Rock-Climb">Rock-Climb</option>
+                <option value="Yoga">Yoga</option>
+                <option value="Table-Tennis">Table-Tennis</option>
+                <option value="Sauna">Sauna</option>
+            </select>
+        </p>
+        <p>
+            <label for="reps"> Reps</label>
+            <input type="number" name="repitionNo" required min="1" max="100">
+        </p>
+        <p>
+            <label for="sets">Sets</label>
+            <input type="number" name="setNo" required min="1" max="10">
+        </p>
+        <p>
+            <label for="time">Time (minutes)</label>
+            <input type="number" id="exerciseTime" name="exerciseTime" min="1">
+        </p>
+
+        <p>
+            <button type="button" onclick="addWorkout()">Add Workout</button>
+        </p>
+    </form>
+
+
+    <%- include('../partials/footer') %>
+
+  

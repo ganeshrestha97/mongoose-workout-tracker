@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mongoose Workout-Tracker</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>Display Date and Time</title>
+  <script>
+    function displayDateTime() {
+      let now = new Date()
+      let displayDate = document.getElementById('displayDate')
+      let displayTime = document.getElementById('displayTime')
+      displayDate.innerHTML = now.toLocaleDateString()
+      displayTime.innerHTML = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+    }
+    setInterval(displayDateTime, 1000)
+  </script>
+</head>
+<body>
+  <div id="dateTimeContainer">
+  <div id="displayDate"></div>
+  <div id="displayTime"></div>
+  </div>
+  
+  <nav>
+    <a href="/">Home</a> | <a href="/workouts">All Workouts</a> | <a href="workouts/new">Add Workout</a>
+  </nav>
+  

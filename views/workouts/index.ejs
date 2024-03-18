@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+
+<h2>All Workouts</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Exercise</th>
+            <th>Reps</th>
+            <th>Sets</th>
+            <th>Time (minutes)</th>
+        </tr>
+    </thead>
+</table>
+<ul>
+    <% workouts.forEach(function(w) { %>
+       <tr>
+        <td><%= w.exercise %></td>
+        <td><%= w.reps %></td>
+        <td><%= w.sets %></td>
+        <td><%= w.time %></td>
+        <td><a href="/workouts/<%= w._id %>">Details</a></td>
+       </tr>
+   <%  }) %>
+
+   
+</ul>
+
+<%- include('../partials/footer') %>
+
