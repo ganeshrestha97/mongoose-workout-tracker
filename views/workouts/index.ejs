@@ -7,23 +7,27 @@
             <th>Exercise</th>
             <th>Reps</th>
             <th>Sets</th>
-            <th>Time (minutes)</th>
+            <th>Time</th>
+            <th>Date</th>
         </tr>
     </thead>
+    <tbody>
+        <% workouts.forEach(function(w) { %>
+            <tr>
+                <td><%= w.exercise %></td>
+                <td><%= w.reps %></td>
+                <td><%= w.sets %></td>
+                <td><%= w.time %></td>
+                <td><%= w.date.toLocaleString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric'}) %></td>
+                <td><a href="/workouts/<%= w._id %>">Details</a></td>
+                <td>
+                    <form action="/workouts/<%= w._id %>?_method=DELETE" method="POST" style="display: inline;">
+                      <button type="submit" style="background:none; border:none; cursor:pointer; "  >🗑</button>
+                    </form>
+                </td>
+            </tr>
+            <%  }) %> 
+    </tbody>
 </table>
-<ul>
-    <% workouts.forEach(function(w) { %>
-       <tr>
-        <td><%= w.exercise %></td>
-        <td><%= w.reps %></td>
-        <td><%= w.sets %></td>
-        <td><%= w.time %></td>
-        <td><a href="/workouts/<%= w._id %>">Details</a></td>
-       </tr>
-   <%  }) %>
-
-   
-</ul>
 
 <%- include('../partials/footer') %>
-

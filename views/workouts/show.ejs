@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+
+
+<h2>Workout</h1>
+    <p>Exercise <%= workout.exercise %></p>
+    <p>Reps <%= workout.reps %></p>
+    <p>Sets <%= workout.sets %></p>
+    <p>Time <%= workout.time %></p>
+    <p>Date <%= workout.date.toLocaleString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric'}) %></p>
+
+
+<%- include('../partials/footer') %>

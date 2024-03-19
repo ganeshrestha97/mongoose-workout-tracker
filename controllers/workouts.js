@@ -6,6 +6,7 @@ module.exports = {
     new: newWorkout,
     create,
     index,
+    show,
     addExercise,
     delete: deleteWorkout
 }
@@ -25,9 +26,18 @@ async function addExercise (req, res) {
         const workout = await Workout.findById(req.params.id)
         workout.exercises.push(req.body)
         await workout.save()
-        res.redirect(`'workouts/${req.params.id}`)
+        res.redirect(`/workouts/${req.params.id}`)
     } catch (error) {
         console.error('Error adding exercise', error)
+        res.redirect('/workouts')
+    }
+}
+
+async function show(req, res) {
+    try {
+    const workout = await Workout.findById(req.params.id)
+    res.render('workouts/show', { title: 'Workout Detail', workout })
+    }   catch (error) {
         res.redirect('/workouts')
     }
 }
@@ -35,7 +45,7 @@ async function addExercise (req, res) {
 async function index(req, res) {
     try {
         const workouts =  await Workout.find({})
-        res.render('wrokouts/index', { title: 'All Workouts', workouts })
+        res.render('workouts/index', { title: 'All Workouts', workouts })
     } catch (error) {
         console.error('Error listing workouts:', error)
         res.redirect('/workouts')

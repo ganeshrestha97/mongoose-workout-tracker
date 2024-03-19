@@ -32,6 +32,10 @@ const workoutschema = new Schema({
         min: 1,
         default: 1
     },
+    date: {
+        type: Date,
+        required: true
+    }
 }, {
     timestamps: true
 })
