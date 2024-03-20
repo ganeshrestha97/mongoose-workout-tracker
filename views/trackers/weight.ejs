@@ -1,6 +1,8 @@
-<%- include('./partials/header') %>
+<%- include('../partials/header') %>
 
-<form action="/trackers" method="post">
+
+<h2>Weight (kg)</h2>
+<form action="/trackers/" method="post">
     <p>
         <label for="weight">Weight</label>
         <input type="number" id="weight" name="weight" min="1" required>
@@ -15,4 +17,5 @@
 </form>
 
 
-<%- include('./partials/footer') %>
+<%- include('../partials/footer') %>
+

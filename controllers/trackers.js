@@ -4,52 +4,58 @@ const Tracker = require('../models/tracker')
 
 module.exports = {
     create,
-    newTracker,
-    index,
     show
 }
 
-function newTracker(req, res) {
-    res.render('trackers/new', { title: 'Add New Tracker', errorMsg: '' })
+async function show(req, res) {
+    try {
+        let page
+
+        switch (req.path) {
+            case '/steps':
+                page = 'trackers/steps'
+                break
+            case '/weight':
+                page = 'trackers/weight'
+                break
+            case '/waterIntake':
+                page = 'trackers/waterIntake'
+                break
+            case '/caloriesIntake':
+                page = 'trackers/caloriesIntake'
+                break
+            case '/caloriesBurn':
+                page = 'trackers/caloriesBurn'
+                break
+            case '/heartRate':
+                page = 'trackers/heartRate'
+                break
+        }
+
+        res.render(page, { title: 'Track My' + req.path.substring(1) })
+    } catch (error) {
+        console.error('Error loading tracking tracking:', error)
+        res.status(500).send('Error loading the page to track ' + req.path.substring(1))
+    }
 }
 
 
 async function create(req, res) {
     try {
-        const newTracker = new Tracker({
-            steps: req.body.steps,
-            weight: req.body.weight,
-            waterIntake: req.body.waterIntake,
-            caloriesIntake: req.body.caloriesIntake,
-            caloriesBurn: req.body.caloriesBurn,
-            heartRate: req.body.heartRate,
+        const data = {
             date: req.body.date
-    })
-        await newTracker.save()
+        }
+        if (req.body.steps) data.steps = req.body.steps
+        if (req.body.weight) data.weight =req.body.weight
+        if (req.body.waterIntake) data.waterIntake =req.body.waterIntake
+        if (req.body.caloriesIntake) data.caloriesIntake = req.body.caloriesIntake
+        if (req.body.caloriesBurn) data.caloriesBurn =req.body.caloriesBurn
+        if (req.body.heartRate) data.heartRate =req.body.heartRate
+
+        await Tracker.create(data)
         res.redirect('/trackers')
-    } catch (err) {
-        console.error('Error creating tracker!', err)
-        res.redirect('/trackers/new')
-    }
-}
-
-
-async function index(req, res) {
-    try {
-        const trackers = await Tracker.find({})
-        res.render('trackers/index', { title: 'All Trackers', trackers})
     } catch (error) {
-        console.error('Error listing trackers:', error)
+        console.error('Error saving data!', error)
         res.redirect('/')
-    }
-}
-
-async function show(req, res) {
-    try {
-        const tracker = await Tracker.findById(req.params.id)
-        res.render('trackers/show', { title: 'Tracker Detail', tracker })
-    } catch (error) {
-        console.error('Error showing tracker:', error)
-        res.redirect('/trackers')
     }
 }

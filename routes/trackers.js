@@ -2,19 +2,19 @@ let express = require('express')
 let router = express.Router()
 let trackersCtrl = require('../controllers/trackers')
 
+router.get('/steps', trackersCtrl.show)
 
-// To display all trackers
-router.get('/', trackersCtrl.index)
+router.get('/weight', trackersCtrl.show)
 
-// To displaythe form for new tracker
-router.get('/new', trackersCtrl.newTracker)
+router.get('/waterIntake', trackersCtrl.show)
 
-// To show details of specific tracker
-router.get('/:id', trackersCtrl.show)
+router.get('/caloriesIntake', trackersCtrl.show)
 
-// To handle form submission and create a new tracker
+router.get('/caloriesBurn', trackersCtrl.show)
+
+router.get('/heartRate', trackersCtrl.show)
+
 router.post('/', trackersCtrl.create)
 
 module.exports = router
-
 
