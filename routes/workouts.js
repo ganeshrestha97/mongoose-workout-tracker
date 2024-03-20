@@ -14,10 +14,14 @@ router.get('/:id', workoutsCtrl.show)
 // Route to handle the form submission and create a new workout
 router.post('/', workoutsCtrl.create)
 
-
 // DELETE /workouts/:id
 router.delete('/:id', workoutsCtrl.delete)
 
+// Add notes
+router.post('/:id/addNote', workoutsCtrl.addNote)
+
+// Delete Notes
+router.post('/:id/deleteNote', workoutsCtrl.deleteNote)
 
 module.exports = router
 

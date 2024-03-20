@@ -8,7 +8,33 @@ module.exports = {
     index,
     show,
     addExercise,
-    delete: deleteWorkout
+    delete: deleteWorkout,
+    addNote,
+    deleteNote
+}
+
+async function deleteNote(req, res) {
+    try {
+        const workout = await Workout.findById(req.params.id);
+        workout.notes = ''; // Clearing the note
+        await workout.save();
+        res.redirect(`/workouts/${req.params.id}`);
+    } catch (error) {
+        console.error('Error deleting note:', error);
+        res.redirect(`/workouts/${req.params.id}`);
+    }
+}
+
+async function addNote(req, res) {
+    try {
+        const workout = await Workout.findById(req.params.id)
+        workout.notes = req.body.note
+        await workout.save()
+        res.redirect(`/workouts/${req.params.id}`)
+    } catch (error) {
+        console.error('Error adding note:', error)
+        res.redirect(`/workouts/${req.params.id}`)
+    }
 }
 
 async function deleteWorkout(req,res) {

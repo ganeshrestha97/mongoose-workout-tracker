@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-// optional shortcut to the mongoose.Schema class
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+
+const Schema = mongoose.Schema
 
 
 const mySchema = new Schema({

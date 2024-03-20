@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-// optional shortcut to the mongoose.Schema class
+
 const Schema = mongoose.Schema
 
 
@@ -35,6 +35,10 @@ const workoutschema = new Schema({
     date: {
         type: Date,
         required: true
+    },
+    notes: {
+        type: String,
+        required: false
     }
 }, {
     timestamps: true
