@@ -28,4 +28,42 @@
                 <% }) %>
         </tbody>
     </table>
+
+    <canvas id="stepsChart" width="300" height="300"></canvas>
+
+    <script>
+        const ctx = document.getElementById('stepsChart').getContext('2d');
+        const trackers = <%- JSON.stringify(trackers.sort((a, b) => new Date(a.date) - new Date(b.date)).map(tracker => ({
+    date: tracker.date.toISOString().substring(0, 10), // ISO format
+    steps: tracker.steps
+}))) %>;
+    
+        const dates = trackers.map(tracker => tracker.date);
+        const steps = trackers.map(tracker => tracker.steps);
+    
+        const myChart = new Chart(ctx, {
+            type: 'line', // Choose the chart type, line for a line chart
+            data: {
+                labels: dates, // x-axis data
+                datasets: [{
+                    label: 'Steps',
+                    data: steps, // y-axis data
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    fill: false, // Set fill to false for a line chart
+                    tension: 0.1 // Smoothes the line
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    
+
     <%- include('../partials/footer') %>
