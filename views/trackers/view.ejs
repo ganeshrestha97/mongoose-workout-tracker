@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+
+    <h2>Steps Tracker</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Steps</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% trackers.forEach(function(tracker) { %>
+                <tr>
+                    <td>
+                        <%= tracker.date.toLocaleString('en-US', { year: 'numeric' , month: 'numeric' , day: 'numeric'
+                            }) %>
+                    </td>
+                    <td>
+                        <%= tracker.steps %>
+                    </td>
+                    <td>
+                        <form action="/trackers/<%= tracker._id %>?_method=DELETE" method="POST"
+                            style="display: inline;">
+                            <button type="submit" style="background:none; border:none; cursor:pointer; ">🗑</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+    <%- include('../partials/footer') %>

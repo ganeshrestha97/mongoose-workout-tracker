@@ -4,7 +4,40 @@ const Tracker = require('../models/tracker')
 
 module.exports = {
     create,
-    show
+    show,
+    add,
+    view,
+    delete: deleteSteps
+}
+
+async function deleteSteps(req, res) {
+    try {
+        await Tracker.findByIdAndDelete(req.params.id)
+        res.redirect('/trackers/view')
+    } catch (error) {
+        console.error('Error deleting tracker!', error)
+        res.status(500).send('Error deleting tracker')
+    }
+}
+
+async function view(req, res) {
+    try {
+        const trackers = await Tracker.find({}).sort({date: -1})
+        res.render('trackers/view', { trackers })
+    } catch (error) {
+        console.error('Error fetching trackers:', error)
+        res.status(500).send('Error loading the steps data')
+    }
+}
+
+async function add(req, res) {
+    try {
+        await Tracker.create({ steps: req.body.steps, date: req.body.date })
+        res.redirect('/trackers/view')
+    } catch (error) {
+        console.error('Error adding steps:', error)
+        res.status(500).send('Error adding new steps')
+    }
 }
 
 async function show(req, res) {
@@ -56,6 +89,6 @@ async function create(req, res) {
         res.redirect('/trackers')
     } catch (error) {
         console.error('Error saving data!', error)
-        res.redirect('/')
+        res.status(500).send('Error saving tracker data')
     }
 }
