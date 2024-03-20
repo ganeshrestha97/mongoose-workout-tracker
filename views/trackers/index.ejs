@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+
+<h2>All Trackers</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Steps</th>
+            <th>Weight</th>
+            <th>Water Intake</th>
+            <th>Calories Intake</th>
+            <th>Calories Burn</th>
+            <th>Heart Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% trackers.forEach(function(tracker) { %>
+            <tr>
+                <td><%= tracker.date.toISOString().split('T')[0] %></td>
+                <td><%= tracker.steps %></td>
+                <td><%= tracker.weight %></td>
+                <td><%= tracker.waterIntake %></td>
+                <td><%= tracker.caloriesIntake %></td>
+                <td><%= tracker.caloriesBurn %></td>
+                <td><%= tracker.heartRate %></td>
+            </tr>
+        <% }) %> 
+    </tbody>
+</table>
+
+<%- include('../partials/footer') %>
