@@ -3,7 +3,11 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-
+const noteSchema = new Schema({
+    content: {
+        type: String
+    }
+})
 
 const workoutschema = new Schema({
     exercise: {
@@ -36,10 +40,7 @@ const workoutschema = new Schema({
         type: Date,
         required: true
     },
-    notes: {
-        type: String,
-        required: false
-    }
+    notes: [noteSchema]
 }, {
     timestamps: true
 })

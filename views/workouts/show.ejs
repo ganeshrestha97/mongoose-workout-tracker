@@ -10,18 +10,20 @@
 
     <h3>Notes</h3>
         <% if (workout.notes) { %>
-        <%= workout.notes %>
-        <form action="/workouts/<%= workout._id %>/deleteNote" method="POST" style="display: inline;">
-            <button type="submit" style="background:none; border:none; cursor:pointer; ">🗑</button>
-        </form>
-         <% } else { %>
-            <p></p>
-        <% } %>
-        <form action="/workouts/<%= workout._id %>/addNote" method="post">
-        <label for="note"></label>
-        <textarea name="note" id="note" rows="5" cols="30"></textarea>
-        <p><button type="submit">Add Note</button></p>
-        </form>
+        <% workout.notes.forEach(function(note) { %>
+                <%= note.content %>
+            <form action="/workouts/<%= workout._id %>/deleteNote" method="POST" style="display: inline;">
+                <button type="submit" style="background:none; border:none; cursor:pointer; ">🗑</button>
+            </form>
+            <% }) %>
+            <% } else { %>
+                <p></p>
+                <% } %>
+                <form action="/workouts/<%= workout._id %>/addNote" method="post">
+                    <label for="note"></label>
+                    <textarea name="content" id="note" rows="5" cols="30"></textarea>
+                    <p><button type="submit">Add Note</button></p>
+                </form>
         
 
 

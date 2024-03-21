@@ -28,7 +28,7 @@ async function deleteNote(req, res) {
 async function addNote(req, res) {
     try {
         const workout = await Workout.findById(req.params.id)
-        workout.notes = req.body.note
+        workout.notes.push(req.body)
         await workout.save()
         res.redirect(`/workouts/${req.params.id}`)
     } catch (error) {
