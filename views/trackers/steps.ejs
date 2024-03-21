@@ -1,9 +1,9 @@
 <%- include('../partials/header') %>
 
 
-<h2>Steps </h2>
+<h2>Steps</h2>
 
-<form action="/trackers/steps" method="post">
+<form action="/trackers/addTrackingData" method="post">
 <p>
     <label for="steps">Steps</label>
     <input type="number" id="steps" name="steps" min="1" required>
@@ -14,6 +14,8 @@
 </p>
 <p><button type="submit">Add</button></p>
 </form>
+
+
 
 
 <%- include('../partials/footer') %>

@@ -5,38 +5,91 @@ const Tracker = require('../models/tracker')
 module.exports = {
     create,
     show,
-    add,
-    view,
-    delete: deleteSteps
+    addTrackingData,
+    viewSteps,
+    delete: deleteSteps, deleteWeight,
+    viewWeight,
 }
+
+
+async function deleteWeight(req, res) {
+    try {
+        await Tracker.findByIdAndDelete(req.params.id)
+        res.redirect('/trackers/showWeight')
+    } catch (error) {
+        console.error('Error deleting weight!', error)
+        res.status(500).send('Error deleting weight')
+    }
+}
+
+async function viewWeight(req, res) {
+    try {
+        const trackers = await Tracker.find({}).sort({})
+        res.render('trackers/showWeight', { trackers })
+    } catch (error) {
+        console.error('Error fetching weight:', error)
+        res.status(500).send('Error loading the weight data')
+    }
+}
+
 
 async function deleteSteps(req, res) {
     try {
         await Tracker.findByIdAndDelete(req.params.id)
-        res.redirect('/trackers/view')
+        res.redirect('/trackers/showSteps')
     } catch (error) {
-        console.error('Error deleting tracker!', error)
-        res.status(500).send('Error deleting tracker')
+        console.error('Error deleting steps!', error)
+        res.status(500).send('Error deleting steps')
     }
 }
 
-async function view(req, res) {
+async function viewSteps(req, res) {
     try {
-        const trackers = await Tracker.find({}).sort({date: -1})
-        res.render('trackers/view', { trackers })
+        const trackers = await Tracker.find({}).sort({})
+        res.render('trackers/showSteps', { trackers })
     } catch (error) {
         console.error('Error fetching trackers:', error)
         res.status(500).send('Error loading the steps data')
     }
 }
 
-async function add(req, res) {
+
+async function addTrackingData(req, res) {
     try {
-        await Tracker.create({ steps: req.body.steps, date: req.body.date })
-        res.redirect('/trackers/view')
+        const data = { date: req.body.date }
+
+        // Type of data being added
+        if (req.body.steps) data.steps = req.body.steps
+        if (req.body.weight) data.weight = req.body.weight
+        if (req.body.waterIntake) data.waterIntake = req.body.waterIntake
+        if (req.body.caloriesIntake) data.caloriesIntake = req.body.caloriesIntake
+        if (req.body.caloriesBurn) data.caloriesBurn = req.body.caloriesBurn
+        if (req.body.heartRate) data.heartRate = req.body.heartRate
+
+        // Creating anew Tracker instance with the provided data
+        await Tracker.create(data)
+
+        // Redirect based on the type of data added
+        if (req.body.steps) {
+            res.redirect('/trackers/showSteps')
+        } else if (req.body.weight) {
+            res.redirect('/trackers/showWeight')
+        } else if (req.body.waterIntake) {
+            res.redirect('/trackers/showWaterIntake')
+        } else if (req.body.caloriesIntake) {
+            res.redirect('/trackers/showCaloriesIntake')
+        } else if (req.body.caloriesBurn) {
+            res.redirect('/trackers/showCaloriesBurn')
+        } else if (req.body.heartRate) {
+            res.redirect('/trackers/showHeartRate')
+        } else  {
+
+            // If none of above data is provided, redirect to default page
+            res.redirect('/trackers')
+        }
     } catch (error) {
-        console.error('Error adding steps:', error)
-        res.status(500).send('Error adding new steps')
+            console.error('Error adding tracking data:', error)
+            res.status(500).send('Error adding new tracking data')
     }
 }
 

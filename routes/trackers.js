@@ -17,9 +17,11 @@ router.get('/heartRate', trackersCtrl.show)
 
 router.post('/', trackersCtrl.create)
 
-router.post('/steps', trackersCtrl.add)
+router.post('/addTrackingData', trackersCtrl.addTrackingData)
 
-router.get('/view', trackersCtrl.view)
+router.get('/showSteps', trackersCtrl.viewSteps)
+
+router.get('/showWeight', trackersCtrl.viewWeight)
 
 router.delete('/:id', trackersCtrl.delete)
 
