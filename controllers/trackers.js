@@ -7,10 +7,99 @@ module.exports = {
     show,
     addTrackingData,
     viewSteps,
-    delete: deleteSteps, deleteWeight,
+    deleteSteps,
     viewWeight,
+    deleteWeight,
+    viewWaterIntake,
+    deleteWaterIntake,
+    viewCaloriesIntake,
+    deleteCaloriesIntake,
+    viewCaloriesBurn,
+    deleteCaloriesBurn,
+    viewHeartRate,
+    deleteHeartRate,
 }
 
+async function deleteHeartRate(req, res) {
+    try {
+        await Tracker.findByIdAndDelete(req.params.id)
+        res.redirect('/trackers/showHeartRate')
+    } catch (error) {
+        console.error('Error deleting heart rate!', error)
+        res.status(500).send('Error deleting heart rate')
+    }
+}
+
+async function viewHeartRate(req, res) {
+    try {
+        const trackers = await Tracker.find({}).sort({})
+        res.render('trackers/showHeartRate', { trackers })
+    } catch (error) {
+        console.error('Error fetching heart rate!', error)
+        res.status(500).send('Error loading the heart rate data')
+    }
+}
+
+async function deleteCaloriesBurn(req, res) {
+    try {
+        await Tracker.findByIdAndDelete(req.params.id)
+        res.redirect('/trackers/showCaloriesBurn')
+    } catch (error) {
+        console.error('Error deleting calories burn!', error)
+        res.status(500).send('Error deleting calories burn')
+    }
+}
+
+async function viewCaloriesBurn(req, res) {
+    try {
+        const trackers = await Tracker.find({}).sort({})
+        res.render('trackers/showCaloriesBurn', { trackers })
+    } catch (error) {
+        console.error('Error fetching calories burn!', error)
+        res.status(500).send('Error loading the calories burn data')
+    }
+}
+
+async function deleteCaloriesIntake(req, res) {
+    try {
+        await Tracker.findByIdAndDelete(req.params.id)
+        res.redirect('/trackers/showCaloriesIntake')
+    } catch (error) {
+        console.error('Error deleting calories intake!', error)
+        res.status(500).send('Error deleting calories intake')
+    }
+}
+
+async function viewCaloriesIntake(req, res) {
+    try {
+        const trackers = await Tracker.find({}).sort({})
+        res.render('trackers/showCaloriesIntake', { trackers })
+    } catch (error) {
+        console.error('Error fetching calories intake!', error)
+        res.status(500).send('Error loading the calories intake data')
+    }
+}
+
+
+async function deleteWaterIntake(req, res) {
+    try {
+        await Tracker.findByIdAndDelete(req.params.id)
+        res.redirect('/trackers/showWaterIntake')
+    } catch (error) {
+        console.error('Error deleting water intake!', error)
+        res.status(500).send('Error deleting water intake')
+    }
+}
+
+async function viewWaterIntake(req, res) {
+    try {
+        const trackers = await Tracker.find({}).sort({})
+        res.render('trackers/showWaterIntake', { trackers })
+    } catch (error) {
+        console.error('Error fetching water intake:', error)
+        res.status(500).send('Error loading the water intake data')
+    }
+}
 
 async function deleteWeight(req, res) {
     try {
@@ -27,7 +116,7 @@ async function viewWeight(req, res) {
         const trackers = await Tracker.find({}).sort({})
         res.render('trackers/showWeight', { trackers })
     } catch (error) {
-        console.error('Error fetching weight:', error)
+        console.error('Error fetching weight!', error)
         res.status(500).send('Error loading the weight data')
     }
 }
@@ -48,11 +137,20 @@ async function viewSteps(req, res) {
         const trackers = await Tracker.find({}).sort({})
         res.render('trackers/showSteps', { trackers })
     } catch (error) {
-        console.error('Error fetching trackers:', error)
+        console.error('Error fetching steps!', error)
         res.status(500).send('Error loading the steps data')
     }
 }
 
+// async function addSteps(req, res) {
+//     try {
+//         await Tracker.create({ steps: req.body.steps, date: req.body.date })
+//         res.redirect('/trackers/view')
+//     } catch (error) {
+//         console.error('Error adding steps:', error)
+//         res.status(500).send('Error adding new steps')
+//     }
+// }
 
 async function addTrackingData(req, res) {
     try {

@@ -11,13 +11,8 @@
         <tbody>
             <% trackers.forEach(function(tracker) { %>
                 <tr>
-                    <td>
-                        <%= tracker.date.toLocaleString('en-US', { year: 'numeric' , month: 'numeric' , day: 'numeric'
-                            }) %>
-                    </td>
-                    <td>
-                        <%= tracker.steps %>
-                    </td>
+                    <td><%= tracker.date.toLocaleString('en-US', { year: 'numeric' , month: 'numeric' , day: 'numeric' }) %></td>
+                    <td><%= tracker.steps %></td>
                     <td>
                         <form action="/trackers/<%= tracker._id %>?_method=DELETE" method="POST"
                             style="display: inline;">
@@ -28,43 +23,9 @@
                 <% }) %>
         </tbody>
     </table>
+    
     <a href="/trackers/steps">Back to Steps</a>
 
-    <canvas id="stepsChart" width="300" height="300"></canvas>
-
-    <script>
-        const ctx = document.getElementById('stepsChart').getContext('2d');
-        const trackers = <%- JSON.stringify(trackers.sort((a, b) => new Date(a.date) - new Date(b.date)).map(tracker => ({
-            date: tracker.date.toLocaleString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }),
-            steps: tracker.steps
-        }))) %>
     
-        const dates = trackers.map(tracker => tracker.date);
-        const steps = trackers.map(tracker => tracker.steps);
-
-        const myChart = new Chart(ctx, {
-            type: 'line', // Choose the chart type, line for a line chart
-            data: {
-                labels: dates, // x-axis data
-                datasets: [{
-                    label: 'Steps',
-                    data: steps, // y-axis data
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1,
-                    fill: false, // Set fill to false for a line chart
-                    tension: 0.1 // Smoothes the line
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
-
 
     <%- include('../partials/footer') %>
