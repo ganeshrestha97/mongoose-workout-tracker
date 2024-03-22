@@ -142,6 +142,11 @@ a:hover {
   margin: 30px;
 }
 
+.addWorkout {
+  margin: 15px;
+  text-align: center;
+}
+
 /* Footer */
 .footer {
   background: linear-gradient(to bottom, #ffc4d1, #ff9dae);
