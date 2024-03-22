@@ -92,6 +92,7 @@ table {
   margin: auto;
   border-collapse: collapse;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 173, 189, 0.5);
 }
 
 thead  {
