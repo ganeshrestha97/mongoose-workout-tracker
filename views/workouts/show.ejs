@@ -12,8 +12,8 @@
         <% if (workout.notes) { %>
         <% workout.notes.forEach(function(note) { %>
                 <%= note.content %>
-            <form action="/workouts/<%= workout._id %>/deleteNote" method="POST" style="display: inline;">
-                <button type="submit" style="background:none; border:none; cursor:pointer; ">🗑</button>
+            <form action="/workouts/<%= workout._id %>/deleteNote/<%= note._id %>?_method=DELETE" method="POST" style="display: inline;">
+                <button type="submit" style="background:none; border:none; cursor:pointer; "><span class="material-symbols-outlined">delete</span></button>
             </form>
             <% }) %>
             <% } else { %>
@@ -26,5 +26,6 @@
                 </form>
         
 
+            <a href="/workouts/<%= workout.id %>/edit">Edit Workout</a>
 
 <%- include('../partials/footer') %>

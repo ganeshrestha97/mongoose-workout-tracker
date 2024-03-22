@@ -40,14 +40,12 @@ cursor: pointer;
 .footer a .linkedin {
   width: 50px; 
   height: auto; 
-  margin: 0 10px;
   vertical-align: middle;
 }
 
 .footer a .github {
   width: 30px;
   height: auto;
-  margin: 0 10px;
   vertical-align: middle;
 }
 

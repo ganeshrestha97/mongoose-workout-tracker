@@ -21,7 +21,18 @@ router.delete('/:id', workoutsCtrl.delete)
 router.post('/:id/addNote', workoutsCtrl.addNote)
 
 // Delete Notes
-router.post('/:id/deleteNote', workoutsCtrl.deleteNote)
+// router.post('/:id/notes/:noteId/delete', workoutsCtrl.deleteNote)
+
+// Delete Notes
+router.delete('/:id/deleteNote/:noteId', workoutsCtrl.deleteNote)
+
+// Edit form
+router.get('/:id/edit', workoutsCtrl.edit)
+
+
+// Update workout
+router.put('/:id', workoutsCtrl.update)
+
 
 module.exports = router
 

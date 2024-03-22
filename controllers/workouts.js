@@ -10,13 +10,45 @@ module.exports = {
     addExercise,
     delete: deleteWorkout,
     addNote,
-    deleteNote
+    deleteNote,
+    update,
+    edit
+
 }
+
+
+
+async function edit(req, res) {
+    try {
+        const workout = await Workout.findById(req.params.id)
+        res.render('workouts/edit', { title: 'Edit Workout', workout })
+    } catch (error) {
+        console.error('Error loading workout edit form!', error)
+        res.redirect('/workouts')
+    }
+}
+
+async function update(req, res) {
+    try {
+        const updatedWorkout = await Workout.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        res.redirect(`/workouts/${updatedWorkout._id}`)
+    } catch (error) {
+        console.error('Error updating workout!', error)
+        res.redirect(`/workouts${req.params.id}/edit`)
+    }
+}
+
 
 async function deleteNote(req, res) {
     try {
-        const workout = await Workout.findById(req.params.id);
-        workout.notes = ''; // Clearing the note
+        const workout = await Workout.findById(req.params.id)
+        console.log(workout)
+        // workout.notesId = ''; // Clearing the note
+        const noteIndex = workout.notes.findIndex(note => note._id.toString() === req.params.noteId.toString());
+        console.log(noteIndex)
+        if (noteIndex !== -1) {
+            workout.notes.splice(noteIndex, 1);
+        }
         await workout.save();
         res.redirect(`/workouts/${req.params.id}`);
     } catch (error) {
@@ -37,7 +69,7 @@ async function addNote(req, res) {
     }
 }
 
-async function deleteWorkout(req,res) {
+async function deleteWorkout(req, res) {
     try {
         await Workout.findByIdAndDelete(req.params.id)
         res.redirect('/workouts')
@@ -47,7 +79,7 @@ async function deleteWorkout(req,res) {
     }
 }
 
-async function addExercise (req, res) {
+async function addExercise(req, res) {
     try {
         const workout = await Workout.findById(req.params.id)
         workout.exercises.push(req.body)
@@ -61,16 +93,16 @@ async function addExercise (req, res) {
 
 async function show(req, res) {
     try {
-    const workout = await Workout.findById(req.params.id)
-    res.render('workouts/show', { title: 'Workout Detail', workout })
-    }   catch (error) {
+        const workout = await Workout.findById(req.params.id)
+        res.render('workouts/show', { title: 'Workout Detail', workout })
+    } catch (error) {
         res.redirect('/workouts')
     }
 }
 
 async function index(req, res) {
     try {
-        const workouts =  await Workout.find({})
+        const workouts = await Workout.find({})
         res.render('workouts/index', { title: 'All Workouts', workouts })
     } catch (error) {
         console.error('Error listing workouts:', error)
