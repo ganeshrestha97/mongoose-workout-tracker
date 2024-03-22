@@ -11,7 +11,7 @@ Creating the app was a personal project that blended my love for fitness with my
 As I developed the app, I gained new programming knowledge and improved my fitness regimen. What started as a solution for myself has the potential to help others too. It turned out to be a fulfilling project, merging my interests and offering a practical tool for fitness management.
 
 
-## Abou the App:
+## About the App:
 
 In my app, users have the flexibility to log crucial details of their workout sessions including exercises, repetitions, sets, duration, and dates. The design ensures all entries are not just recorded, but can also be edited as needed, accommodating changes and corrections seamlessly. Beyond the gym, the app extends its utility to holistic health tracking. Users can monitor daily steps, weight fluctuations, water consumption, calorie intake and burn, as well as heart rate. This comprehensive approach not only simplifies the management of fitness routines but also encourages a balanced focus on overall well-being.
 
