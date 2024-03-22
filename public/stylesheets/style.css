@@ -19,7 +19,7 @@ body, html {
 /* Date and Time Container */
 #dateTimeContainer {
   position: fixed;
-  top: 20px;
+  top: 50px;
   right: 20px;
   padding: 5px;
   text-align: right;
@@ -63,6 +63,16 @@ nav a:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
   background: linear-gradient(to right, #ffa9bd, #ffbdcc);
+}
+
+#titleFont {
+  position: fixed;
+  top: 5px;
+  right: 20px;
+  padding: 5px;
+  text-align: left;
+  color: #ff7f87;
+
 }
 
 /* Tracker Links */

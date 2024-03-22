@@ -1,4 +1,4 @@
-# Workout Tracker
+# Fit Fusion
 _________________
 
 
@@ -13,7 +13,7 @@ As I developed the app, I gained new programming knowledge and improved my fitne
 
 ## About the App:
 
-In my app, users have the flexibility to log crucial details of their workout sessions including exercises, repetitions, sets, duration, and dates. The design ensures all entries are not just recorded, but can also be edited as needed, accommodating changes and corrections seamlessly. Beyond the gym, the app extends its utility to holistic health tracking. Users can monitor daily steps, weight fluctuations, water consumption, calorie intake and burn, as well as heart rate. This comprehensive approach not only simplifies the management of fitness routines but also encourages a balanced focus on overall well-being.
+In my app, users  have the flexibility to log crucial details of their workout sessions including exercises, repetitions, sets, duration, and dates. The design ensures all entries are not just recorded, but can also be edited as needed, accommodating changes and corrections seamlessly. Beyond the gym, the app extends its utility to holistic health tracking. Users can monitor daily steps, weight fluctuations, water consumption, calorie intake and burn, as well as heart rate. This comprehensive approach not only simplifies the management of fitness routines but also encourages a balanced focus on overall well-being.
 
 ### [Click to start tracking your routine](https://mongoose-workout-tracker-9e211039a912.herokuapp.com/workouts)
 
@@ -32,6 +32,7 @@ In my app, users have the flexibility to log crucial details of their workout se
 -   JavaScript
 -   HTML
 -   CSS
+-   Express
 -   Mongoose
 -   Node.js
 -   EJS
