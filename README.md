@@ -4,7 +4,7 @@ _________________
 
 ## Background story:
 
-Currently, my life is a balance between the code I write and the weights I lift. Faced with the challenge of keeping track of my varied workout routine, I decided to create my own solution: w'orkout tracker' an app tailored to simplify my fitness life.
+Currently, my life is a balance between the code I write and the weights I lift. Faced with the challenge of keeping track of my varied workout routine, I decided to create my own solution, fit fusion an app tailored to simplify my fitness life.
 
 Creating the app was a personal project that blended my love for fitness with my coding skills. It was designed to be straightforward, allowing me to easily log and monitor my fitness journey.
 
