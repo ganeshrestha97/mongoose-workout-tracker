@@ -6,6 +6,7 @@
             <tr>
                 <th>Date</th>
                 <th>Calories Intake</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -20,14 +21,15 @@
                     </td>
                     <td>
                         <form action="/trackers/<%= tracker._id %>?_method=DELETE" method="POST"
-                            style="display: inline;">
-                            <button type="submit" style="background:none; border:none; cursor:pointer; "><span class="material-symbols-outlined">delete</span></button>
+                            style="display: inline;" id="deleteForm">
+                            <button type="submit" style="background:none; border:none; cursor:pointer;"  class="deleteButton"><span class="material-symbols-outlined">delete</span></button>
                         </form>
                     </td>
                 </tr>
                 <% }) %>
         </tbody>
     </table>
-    <a href="/trackers/caloriesIntake">Back to Calories Intake</a>
+    <a href="/trackers/caloriesIntake" class="steps">Back to Calories Intake</a>
   
 <%- include('../partials/footer') %>
+

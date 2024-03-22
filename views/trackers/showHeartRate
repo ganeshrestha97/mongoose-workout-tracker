@@ -6,6 +6,7 @@
             <tr>
                 <th>Date</th>
                 <th>Heart Rate</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -16,18 +17,19 @@
 
                     </td>
                     <td>
-                        <%= tracker.waterIntake %>
+                        <%= tracker.heartRate %>
                     </td>
                     <td>
                         <form action="/trackers/<%= tracker._id %>?_method=DELETE" method="POST"
-                            style="display: inline;">
-                            <button type="submit" style="background:none; border:none; cursor:pointer; "><span class="material-symbols-outlined">delete</span></button>
+                            style="display: inline;" id="deleteForm">
+                            <button type="submit" style="background:none; border:none; cursor:pointer;" class="deleteButton"><span class="material-symbols-outlined">delete</span></button>
                         </form>
                     </td>
                 </tr>
                 <% }) %>
         </tbody>
     </table>
-    <a href="/trackers/heartRate">Back to Heart Rate</a>
+    <a href="/trackers/heartRate" class="steps">Back to Heart Rate</a>
   
 <%- include('../partials/footer') %>
+

@@ -119,6 +119,29 @@ a:hover {
   text-decoration: underline;
 }
 
+.workoutDetails, .workoutNotes {
+  padding: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.note {
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+}
+
+.note-form {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+
+.editWorkout {
+  margin: 30px;
+}
+
 /* Footer */
 .footer {
   background: linear-gradient(to bottom, #ffc4d1, #ff9dae);
@@ -209,4 +232,9 @@ button {
 button:hover {
   transform: translateY(-3px);
   box-shadow: 0 0 20px rgba(255, 173, 189, 0.7);
+}
+
+
+.steps {
+  text-align: center;
 }

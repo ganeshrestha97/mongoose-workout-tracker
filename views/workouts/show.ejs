@@ -1,31 +1,37 @@
 <%- include('../partials/header') %>
 
 
-    <h2>Workout</h1>
-        <p>Exercise <%= workout.exercise %></p>
-        <p>Reps <%= workout.reps %></p>
-        <p>Sets <%= workout.sets %></p>
-        <p>Time <%= workout.time %></p>
-        <p>Date <%= workout.date.toLocaleString('en-US', { year: 'numeric' , month: 'numeric' , day: 'numeric' }) %></p>
+    <h2>Workout</h2>
+        <p class="workoutDetails"><strong>Exercise</strong> <%= workout.exercise %></p>
+        <p class="workoutDetails"><strong>Reps</strong> <%= workout.reps %></p>
+        <p class="workoutDetails"><strong>Sets</strong> <%= workout.sets %></p>
+        <p class="workoutDetails"><strong>Time</strong> <%= workout.time %></p>
+        <p class="workoutDetails"><strong>Date</strong> <%= workout.date.toLocaleString('en-US', { year: 'numeric' , month: 'numeric' , day: 'numeric' }) %></p>
 
-    <h3>Notes</h3>
+    <h3 class="workoutNotes">Notes</h3>
+    <div class="workoutNotes">
+   
         <% if (workout.notes) { %>
         <% workout.notes.forEach(function(note) { %>
+            <div class="note">
                 <%= note.content %>
             <form action="/workouts/<%= workout._id %>/deleteNote/<%= note._id %>?_method=DELETE" method="POST" style="display: inline;" id="deleteForm">
-                <button type="submit" style="background:none; border:none; cursor:pointer;" class="deleteButton"></button><span class="material-symbols-outlined">delete</span></button>
+                <button type="submit" style="background:none; border:none; cursor:pointer;" class="deleteButton"><span class="material-symbols-outlined">delete</span></button>
             </form>
+        </div>
             <% }) %>
             <% } else { %>
-                <p></p>
+                <p>No notes available!</p>
                 <% } %>
+            
+            </div>
                 <form action="/workouts/<%= workout._id %>/addNote" method="post">
                     <label for="note"></label>
                     <textarea name="content" id="note" rows="5" cols="30"></textarea>
                     <p><button type="submit">Add Note</button></p>
                 </form>
-        
 
-            <a href="/workouts/<%= workout.id %>/edit">Edit Workout</a>
+                <button onclick="location.href='/workouts/<%= workout.id %>/edit'" class="editWorkout">Edit Workout</button>
+        
 
 <%- include('../partials/footer') %>
